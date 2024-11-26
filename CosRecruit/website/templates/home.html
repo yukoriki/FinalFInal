@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<br/><br/>
+{% if user.is_authenticated %}
+
+<div class ="offset-md-3">
+    <h1>🤍 CosHOUSE Applicants 🤍</h1>
+    <br/>
+    <br/>
+</div>    
+
+<p>helpful tip: click the name of each applicant for <strong>more information</strong> and <strong>configuration!</strong></p>
+
+<table class="table table-hover">
+    <thead>
+      <tr class="table-primary table-static">
+        <th scope="col">Cosname</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">ID</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% if records %}
+        {% for record in records %}
+
+        <tr class="table-light">
+            <th>{{ record.cosname }}</th>
+            <td><a href="{% url 'record' record.id %}">{{ record.last_name }},
+                {{ record.first_name }} </a></td>
+            <td>{{ record.email }}</td>
+            <td>{{ record.phone }}</td>
+            <td>{{ record.city }},
+                {{ record.state }},
+                {{ record.country }},
+                {{ record.zipcode }}</td>
+            <td>{{ record.created_at }}</td>
+            <td>{{ record.id }}</td>
+
+        </tr>
+
+        {% endfor %}
+    {% endif %}
+
+    </tbody>
+</table>
+
+{% else %}
+
+    <style>
+    h1 {text-align: center;}
+    p {text-align: center;}
+    </style>
+
+    <div class ="col-md-4 offset-md-4">
+    <h1>CosHOUSE</h1>
+    <p><i>The house that builds the biggest events of the year!</i></p>
+    
+    <br/>
+
+    <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+
+        <form>
+            <fieldset>
+                
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username", placeholder="Username" required>
+                </div>
+
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password", placeholder="Password" required>
+                </div>
+             
+                <br/>
+
+                <div class ="col-md-4 offset-md-5">
+                <button type="submit" class="btn btn-primary">LOGIN</button>
+                </div>
+                
+            </fieldset>
+          </form>
+
+    </form>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

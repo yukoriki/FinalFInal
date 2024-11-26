@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br/><br/>
+<style>
+    h1 {text-align: center;}
+    .subheader {text-align: center;}
+</style>
+
+<div class ="col-md-4 offset-md-4">
+    <h1>REGISTER</h1>
+    <p class ="subheader">Be a member of the house!</p>
+    <br/>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div class ="col-md-4 offset-md-5">
+            <button type="submit" class="btn btn-primary">REGISTER</button>
+        </div>
+    </form>    
+</div>
+
+{% endblock %}

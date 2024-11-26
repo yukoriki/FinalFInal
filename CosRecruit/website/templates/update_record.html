@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<br/><br/><br/>
+
+<style>
+    h1 {text-align: center;}
+    p {text-align: center;}
+    </style>
+<div class ="col-md-4 offset-md-4">
+    <h1>Update Details</h1>
+    <p><i>Fill up the form below!</i></p>
+    
+    <br/>
+    
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div class ="col-md-4 offset-md-4">
+            <button type="submit" class="btn btn-primary">UPDATE</button>
+            </div>
+
+    </form>       
+</div>    
+
+{% endblock %}
